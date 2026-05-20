@@ -13,7 +13,7 @@ export default function Header() {
         
         <div className="flex items-center space-x-3">
           <img 
-            src="/images/globe.png" 
+            src="/images/favicon.png" 
             alt="LocateIt Logo" 
             className="w-25 h-25 object-contain" 
           />
@@ -36,7 +36,7 @@ export default function Header() {
             <button 
               className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
             >
-              Sign In
+              Sign Up
             </button>
             </Link>
           </div>
