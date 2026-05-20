@@ -1,4 +1,5 @@
 import { Fredoka } from 'next/font/google';
+import Link from 'next/link';
 
 const headerFont = Fredoka({ 
   subsets: ['latin'],
@@ -31,12 +32,13 @@ export default function Header() {
           </nav>
 
           <div>
+            <Link href="/sign-up">
             <button 
-              onClick={() => alert("Unavailable for now")}
               className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
             >
-              Log In
+              Sign In
             </button>
+            </Link>
           </div>
         </div>
 
