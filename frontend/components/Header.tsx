@@ -21,12 +21,25 @@ export default function Header() {
           </h1>
         </div>
         
-        <nav>
-          <ul className="flex space-x-6 text-lg font-bold text-gray-600">
-            <li className="hover:text-green-600 cursor-pointer transition-colors">Home</li>
-            <li className="hover:text-green-600 cursor-pointer transition-colors">About</li>
-          </ul>
-        </nav>
+        <div className="flex items-center space-x-8">
+          <nav>
+            <ul className="flex space-x-6 text-lg font-bold text-gray-600">
+              <li className="hover:text-green-600 cursor-pointer transition-colors">Home</li>
+              <li className="hover:text-green-600 cursor-pointer transition-colors">Favorites</li>
+              <li className="hover:text-green-600 cursor-pointer transition-colors">About</li>
+            </ul>
+          </nav>
+
+          <div>
+            <button 
+              onClick={() => alert("Unavailable for now")}
+              className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
+            >
+              Log In
+            </button>
+          </div>
+        </div>
+
       </div>
     </header>
   );
