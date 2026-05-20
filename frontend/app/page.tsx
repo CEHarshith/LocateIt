@@ -27,7 +27,15 @@ export default function Home() {
       <Header />
 
       <main className="flex-grow max-w-2xl mx-auto w-full flex flex-col p-6 space-y-8">
-        
+        <section className="container mx-auto px-4 py-32">
+          <div className="mx-auto max-w-4xl text-center">
+            <h1 className="test-black mb-6 text-6xl font-bold">
+              Find your next trip.
+            </h1>
+            <p className="text-muted-foreground mb-10 text-xl">
+              From famous landmarks to hidden corners of the world. Drop a photo. Discover the place.</p>
+          </div>
+        </section>
         <div className="w-full flex flex-col space-y-6 min-h-[320px]">
           <UploadButton 
             onUpload={handleUpload} 
