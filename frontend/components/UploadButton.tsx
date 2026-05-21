@@ -8,14 +8,26 @@ interface UploadButtonProps {
 
 export default function UploadButton({ onUpload, isLoading }: UploadButtonProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleFileSelected = (file: File) => {
     setError(null);
     if (file.type.startsWith("image/")) {
       setSelectedFile(file);
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
     } else {
       setError("Please select a valid image file.");
+      setSelectedFile(null);
+      setPreviewUrl(null);
+    }
+  };
+
+  const handleUploadClick = () => {
+    if (selectedFile) {
+      onUpload(selectedFile);
+      setPreviewUrl(null);
       setSelectedFile(null);
     }
   };
@@ -26,12 +38,19 @@ export default function UploadButton({ onUpload, isLoading }: UploadButtonProps)
 
       {error && <p className="text-red-500 font-bold">{error}</p>}
 
-      {selectedFile && !error && (
-        <p className="text-xl font-medium text-gray-700">{selectedFile.name}</p>
+      {previewUrl && !error && (
+        <div className="w-full flex flex-col items-center">
+          <img
+            src={previewUrl}
+            alt="Preview"
+            className="w-full max-h-64 object-contain rounded-lg mb-2 border"
+          />
+          <p className="text-xl font-medium text-gray-700">{selectedFile?.name}</p>
+        </div>
       )}
 
       <button
-        onClick={() => selectedFile && onUpload(selectedFile)}
+        onClick={handleUploadClick}
         disabled={!selectedFile || isLoading || !!error}
         className="w-full py-4 text-xl font-bold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400"
       >
