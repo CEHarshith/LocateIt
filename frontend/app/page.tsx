@@ -24,8 +24,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-
       <main className="flex-grow max-w-2xl mx-auto w-full flex flex-col p-6 space-y-8">
         <section className="container mx-auto px-4 py-32">
           <div className="mx-auto max-w-4xl text-center">
