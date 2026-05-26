@@ -1,25 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import Header from "../components/Header";
 import UploadButton from "../components/UploadButton";
-import LocationResults from "../components/LocationResults";
+import ResultCard from "../components/LocationResults";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [prediction, setPrediction] = useState<string | null>(null);
+  const [prediction, setPrediction] = useState<{landmark: string, confidence: number}[]>([]);
 
   const handleUpload = async (file: File) => {
     setIsLoading(true);
-    setPrediction(null);
+    setPrediction([]);
 
     const url = URL.createObjectURL(file);
     setImageUrl(url);
 
-    await new Promise((resolve) => setTimeout(resolve, 2500));
-    
-    setIsLoading(false);
+    try {
+        const formData = new FormData();
+        formData.append("file", file);
+
+        const response = await fetch("http://localhost:8000/search", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to get prediction");
+        }
+
+        const data = await response.json();
+        setPrediction(data.results); // update this once ML returns real results
+    } catch (err) {
+        console.error(err);
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   return (
@@ -52,7 +68,7 @@ export default function Home() {
         </div>
 
         <div className="w-full bg-white p-4 rounded-xl shadow min-h-[180px]">
-          <LocationResults isLoading={isLoading} prediction={prediction} />
+          <ResultCard isLoading={isLoading} prediction={prediction} />
         </div>
 
       </main>

@@ -64,7 +64,7 @@ export default function SignIn() {
                             {loading ? "Signing in..." : "Sign In"}
                         </Button>
                         <p className="text-center text-sm">
-                            Don't have an account? <Link href="/sign-up" className="font-medium text-primary hover:underline">Sign Up</Link>
+                            Dont have an account? <Link href="/sign-up" className="font-medium text-primary hover:underline">Sign Up</Link>
                         </p>
                     </CardFooter>
                 </form>
