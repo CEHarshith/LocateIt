@@ -3,12 +3,14 @@
 interface Result {
   landmark_id: number;
   landmark_name: string;
+
   confidence: number;
 }
 
 interface ResultCardProps {
   isLoading: boolean;
   prediction: { results: Result[] } | null;
+
 }
 
 export default function ResultCard({ isLoading, prediction }: ResultCardProps) {
@@ -21,6 +23,7 @@ export default function ResultCard({ isLoading, prediction }: ResultCardProps) {
   }
 
   if (!prediction || !prediction.results) {
+
     return (
       <div className="flex items-center justify-center min-h-[80px]">
         <span className="text-xl font-bold text-gray-700">No match found</span>
@@ -44,6 +47,7 @@ export default function ResultCard({ isLoading, prediction }: ResultCardProps) {
           <p className="text-gray-500 text-sm">
             {(result.confidence * 100).toFixed(1)}%
           </p>
+
         </div>
       ))}
     </div>

@@ -1,12 +1,11 @@
 "use client";
 import { useState } from "react";
-import Header from "../components/Header";
 import UploadButton from "../components/UploadButton";
-import LocationResults from "../components/LocationResults";
+import ResultCard from "../components/LocationResults";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
-  const [prediction, setPrediction] = useState<any>(null); 
+  const [prediction, setPrediction] = useState<any>(null);
 
   const handleUploadComplete = (data: any) => {
     setPrediction(data);
@@ -20,8 +19,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-
       <main className="flex-grow max-w-2xl mx-auto w-full flex flex-col p-6 space-y-8">
         <section className="container mx-auto px-4 py-16">
           <div className="mx-auto max-w-4xl text-center">
@@ -33,17 +30,15 @@ export default function Home() {
             </p>
           </div>
         </section>
-        
+
         <div className="w-full flex flex-col space-y-6">
-          <UploadButton 
-            onUpload={handleUploadComplete} 
-            onStart={handleStartUpload}
-            isLoading={isLoading} 
+          <UploadButton
+            onUpload={handleUploadComplete}
           />
         </div>
 
         <div className="w-full bg-white p-4 rounded-xl shadow min-h-[180px]">
-          <LocationResults isLoading={isLoading} prediction={prediction} />
+          <ResultCard isLoading={false} prediction={prediction} />
         </div>
       </main>
     </div>
