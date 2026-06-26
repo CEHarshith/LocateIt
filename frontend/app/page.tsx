@@ -1,16 +1,12 @@
 "use client";
+
 import { useState } from "react";
 import UploadButton from "../components/UploadButton";
 import ResultCard from "../components/LocationResults";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
-<<<<<<< HEAD
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [prediction, setPrediction] = useState<{landmark: string, confidence: number}[]>([]);
-=======
-  const [prediction, setPrediction] = useState<any>(null); 
->>>>>>> 4ea9057 (full working ML pipeline)
+  const [prediction, setPrediction] = useState<any>(null);
 
   const handleUploadComplete = (data: any) => {
     setPrediction(data);
@@ -19,35 +15,7 @@ export default function Home() {
 
   const handleStartUpload = () => {
     setIsLoading(true);
-<<<<<<< HEAD
-    setPrediction([]);
-
-    const url = URL.createObjectURL(file);
-    setImageUrl(url);
-
-    try {
-        const formData = new FormData();
-        formData.append("file", file);
-
-        const response = await fetch("http://localhost:8000/search", {
-            method: "POST",
-            body: formData,
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to get prediction");
-        }
-
-        const data = await response.json();
-        setPrediction(data.results); // update this once ML returns real results
-    } catch (err) {
-        console.error(err);
-    } finally {
-        setIsLoading(false);
-    }
-=======
     setPrediction(null);
->>>>>>> 4ea9057 (full working ML pipeline)
   };
 
   return (
@@ -63,17 +31,15 @@ export default function Home() {
             </p>
           </div>
         </section>
-        
+
         <div className="w-full flex flex-col space-y-6">
-          <UploadButton 
-            onUpload={handleUploadComplete} 
-            onStart={handleStartUpload}
-            isLoading={isLoading} 
+          <UploadButton
+            onUpload={handleUploadComplete}
           />
         </div>
 
         <div className="w-full bg-white p-4 rounded-xl shadow min-h-[180px]">
-          <ResultCard isLoading={isLoading} prediction={prediction} />
+          <ResultCard isLoading={false} prediction={prediction} />
         </div>
       </main>
     </div>
