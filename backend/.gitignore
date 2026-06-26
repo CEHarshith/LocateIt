@@ -1,12 +1,6 @@
 venv/
 .venv/
 __pycache__/
-<<<<<<< HEAD
-embeddings.npy
-labels.json
-data/
-*.pyc
-=======
 *.pyc
 .env
 .DS_Store
@@ -14,4 +8,4 @@ top_10k.csv
 train.csv
 train_label.csv
 kaggle_cleaned.csv
->>>>>>> 4ea9057 (full working ML pipeline)
+

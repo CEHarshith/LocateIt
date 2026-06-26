@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import UploadButton from "../components/UploadButton";
 import ResultCard from "../components/LocationResults";
