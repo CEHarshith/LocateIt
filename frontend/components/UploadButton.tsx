@@ -1,15 +1,16 @@
+"use client";
 import { useState } from "react";
 import DragAndDropZone from "./DragAndDropZone";
 
 interface UploadButtonProps {
-  onUpload: (file: File) => void;
-  isLoading: boolean;
+  onUpload: (results: any) => void;
 }
 
-export default function UploadButton({ onUpload, isLoading }: UploadButtonProps) {
+export default function UploadButton({ onUpload }: UploadButtonProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileSelected = (file: File) => {
     setError(null);
@@ -24,11 +25,33 @@ export default function UploadButton({ onUpload, isLoading }: UploadButtonProps)
     }
   };
 
-  const handleUploadClick = () => {
-    if (selectedFile) {
-      onUpload(selectedFile);
-      setPreviewUrl(null);
-      setSelectedFile(null);
+  const handleUploadClick = async () => {
+    if (!selectedFile) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    try {
+      const response = await fetch("http://localhost:8000/search", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        onUpload(data);
+      } else {
+        setError(data.message || "Error processing image on server.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Failed to connect to the backend. Is FastAPI running?");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -54,7 +77,7 @@ export default function UploadButton({ onUpload, isLoading }: UploadButtonProps)
         disabled={!selectedFile || isLoading || !!error}
         className="w-full py-4 text-xl font-bold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors disabled:bg-gray-400"
       >
-        {isLoading ? "Analysing..." : "Upload"}
+        {isLoading ? "Analysing..." : "Upload & Search"}
       </button>
     </div>
   );
