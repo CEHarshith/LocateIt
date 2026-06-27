@@ -38,7 +38,9 @@ export default function Header() {
         <div className="flex items-center space-x-8">
           <nav>
             <ul className="flex space-x-6 text-lg font-bold text-gray-600">
-              <li className="hover:text-green-600 cursor-pointer transition-colors">Home</li>
+              <li className="hover:text-green-600 cursor-pointer transition-colors">
+                <Link href="/">Home</Link>
+              </li>
               <li className="hover:text-green-600 cursor-pointer transition-colors">Favorites</li>
               <li className="hover:text-green-600 cursor-pointer transition-colors">About</li>
             </ul>
