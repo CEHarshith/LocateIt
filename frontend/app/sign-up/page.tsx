@@ -27,9 +27,9 @@ export default function SignUp(){
 
         try {
             const result = await signUp(email, password, name);
-            if(!result.user){
-                setError("Failed to create account");
-            }else{
+            if (result.error) {
+                setError(result.error);
+            } else{
                 router.push("/");
                 authClient.$store.notify("$sessionSignal");
             }

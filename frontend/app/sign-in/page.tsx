@@ -26,8 +26,8 @@ export default function SignIn() {
 
         try {
             const result = await signIn(email, password);
-            if (!result.user) {
-                setError("Invalid email or password");
+            if (result.error) {
+                setError(result.error);
             } else {
                 router.push("/");
                 authClient.$store.notify("$sessionSignal");
