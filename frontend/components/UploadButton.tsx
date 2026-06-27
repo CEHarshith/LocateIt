@@ -35,7 +35,7 @@ export default function UploadButton({ onUpload }: UploadButtonProps) {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch("http://localhost:8000/search", {
+      const response = await fetch("https://hasbullah123-locateit-backend.hf.space/search", {
         method: "POST",
         body: formData,
       });
