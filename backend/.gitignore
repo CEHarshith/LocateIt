@@ -6,6 +6,4 @@ __pycache__/
 .DS_Store
 top_10k.csv
 train.csv
-train_label.csv
 kaggle_cleaned.csv
-

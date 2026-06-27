@@ -9,13 +9,11 @@ import pandas as pd
 import json
 import os
 
-
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -86,4 +84,3 @@ async def process_image(file: UploadFile = File(...)):
         })
 
     return {"results": results} if results else {"message": "No match found"}
-
