@@ -8,6 +8,8 @@ import Link from 'next/link';
 import { useState } from "react";
 import { signIn } from "@/lib/actions/auth-actions";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+
 
 export default function SignIn() {
     const [email, setEmail] = useState("");
@@ -28,6 +30,7 @@ export default function SignIn() {
                 setError("Invalid email or password");
             } else {
                 router.push("/");
+                authClient.$store.notify("$sessionSignal");
             }
         } catch (err) {
             setError(err instanceof Error ? err.message : "An unexpected error occurred");

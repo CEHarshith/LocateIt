@@ -1,5 +1,9 @@
+"use client";
+
 import { Fredoka } from 'next/font/google';
 import Link from 'next/link';
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const headerFont = Fredoka({ 
   subsets: ['latin'],
@@ -7,6 +11,15 @@ const headerFont = Fredoka({
 });
 
 export default function Header() {
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await authClient.signOut();
+    router.push("/");
+    router.refresh();
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100 py-4 px-6">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -32,13 +45,22 @@ export default function Header() {
           </nav>
 
           <div>
-            <Link href="/sign-up">
-            <button 
-              className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
-            >
-              Sign Up
-            </button>
-            </Link>
+            {session ? (
+              <button 
+                onClick={handleSignOut}
+                className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
+              >
+                Sign Out
+              </button>
+            ) : (
+              <Link href="/sign-up">
+                <button 
+                  className="px-5 py-2 text-base font-bold text-gray-700 hover:bg-gray-100 rounded-xl border border-gray-300 transition-colors"
+                >
+                  Sign Up
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 
