@@ -41,7 +41,9 @@ export default function Header() {
               <li className="hover:text-green-600 cursor-pointer transition-colors">
                 <Link href="/">Home</Link>
               </li>
-              <li className="hover:text-green-600 cursor-pointer transition-colors">Favorites</li>
+              <li className="hover:text-green-600 cursor-pointer transition-colors">
+                <Link href="/favourites">Favorites</Link>
+              </li>
               <li className="hover:text-green-600 cursor-pointer transition-colors">About</li>
             </ul>
           </nav>

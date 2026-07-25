@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -127,4 +128,28 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Leaflet / Tailwind preflight conflict fix — keep this unlayered
+   so it always wins over Tailwind's @layer base reset */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-container img {
+  max-width: none !important;
+}
+
+.leaflet-tile {
+  position: absolute !important;
+  width: 256px !important;
+  height: 256px !important;
+  left: 0;
+  top: 0;
+}
+
+.leaflet-pane,
+.leaflet-tile-pane {
+  z-index: 0;
 }
