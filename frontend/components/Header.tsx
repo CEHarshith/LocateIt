@@ -44,7 +44,7 @@ export default function Header() {
               <li className="hover:text-green-600 cursor-pointer transition-colors">
                 <Link href="/favourites">Favorites</Link>
               </li>
-              <li className="hover:text-green-600 cursor-pointer transition-colors">About</li>
+              {/*<li className="hover:text-green-600 cursor-pointer transition-colors">About</li>*/}
             </ul>
           </nav>
 
