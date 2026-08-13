@@ -1,11 +1,3 @@
-/**
- * Component tests for DragAndDropZone.
- *
- * This component has no external dependencies (no Supabase, no auth,
- * no network calls) -- it just validates a File and forwards it via the
- * onFileSelected callback -- which is exactly what makes it cheap to
- * test in isolation with React Testing Library, no mocking required.
- */
 import { render, screen, fireEvent } from "@testing-library/react";
 import DragDropZone from "@/components/DragAndDropZone";
 
